@@ -8,7 +8,10 @@ package tickmana.controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +21,11 @@ public class dblinker {
     private Connection conn = null;
     private boolean connected = false;
     public static dblinker instance = null;
+    private static String dbHost = "localhost"; // Hostname
+    private static String dbPort = "3306";      // Port -- Standard: 3306
+    private static String dbName = "test_db";   // Datenbankname
+    private static String dbUser = "aleks";     // Datenbankuser
+    private static String dbPass = "test";      // Datenbankpasswort
 
     protected dblinker(){
         String url = "jdbc:mysql://localhost/test?user=monty&password=greatsqldb";
@@ -45,5 +53,21 @@ public class dblinker {
         }
         
         return dblinker.instance;
+    }
+    
+    public ArrayList<String[]> executequery( String stmt ){
+        try{
+            Statement query = this.conn.createStatement();
+ 
+            // Tabelle anzeigen
+            String sql = "SELECT kundeid, vorname, nachname, email FROM kunde";
+            ResultSet result = query.executeQuery(sql);
+            
+            return null;
+        }catch( SQLException ex ){
+            ex.printStackTrace();
+        }
+        
+        return null;
     }
 }
