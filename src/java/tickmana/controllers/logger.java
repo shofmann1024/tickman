@@ -6,15 +6,24 @@
 
 package tickmana.controllers;
 
+import java.util.ArrayList;
+import tickmana.controllers.objects.log;
+
 /**
  *
  * @author Sebastian Hofmann
  */
 public class logger {
     public static logger instance = null;
+    private ArrayList<log> logs = null;
     
+    //@Override
     protected logger(){
-        
+        try{
+            this.logs = new ArrayList<>();
+        }finally{
+            this.logs = null;
+        }
     }
     
     public static logger getinstance(){
@@ -23,5 +32,37 @@ public class logger {
         }
         
         return logger.instance;
+    }
+    
+    public boolean addlog_ok( String log ){
+        if( log.compareTo("") != 0 ){
+            this.logs.add(new log(log.Types_.ok, log));
+            
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean addlog_warning( String log ){
+        if( log.compareTo("") != 0 ){
+            this.logs.add(new log(log.Types_.warning, log));
+            
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    /**
+     * this class write the logs into the database when she was finalize.
+     * 
+     * @throws Throwable 
+     */
+    @Override
+    public void finalize() throws Throwable {
+        super.finalize();
+        
+        
     }
 }
