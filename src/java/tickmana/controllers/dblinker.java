@@ -21,11 +21,11 @@ public class dblinker {
     private Connection conn = null;
     private boolean connected = false;
     public static dblinker instance = null;
-    private static String dbHost = "localhost"; // Hostname
-    private static String dbPort = "3306";      // Port -- Standard: 3306
-    private static String dbName = "test_db";   // Datenbankname
-    private static String dbUser = "aleks";     // Datenbankuser
-    private static String dbPass = "test";      // Datenbankpasswort
+    final static String dbHost = "localhost"; // Hostname
+    final static String dbPort = "3306";      // Port -- Standard: 3306
+    final static String dbName = "test_db";   // Datenbankname
+    final static String dbUser = "aleks";     // Datenbankuser
+    final static String dbPass = "test";      // Datenbankpasswort
 
     protected dblinker(){
         String url = "jdbc:mysql://localhost/test?user=monty&password=greatsqldb";
@@ -56,16 +56,20 @@ public class dblinker {
     }
     
     public ArrayList<String[]> executequery( String stmt ){
-        try{
-            Statement query = this.conn.createStatement();
- 
-            // Tabelle anzeigen
-            String sql = "SELECT kundeid, vorname, nachname, email FROM kunde";
-            ResultSet result = query.executeQuery(sql);
-            
+        if( this.connected ){
+            try{
+                Statement query = this.conn.createStatement();
+
+                // Tabelle anzeigen
+                String sql = "SELECT kundeid, vorname, nachname, email FROM kunde";
+                ResultSet result = query.executeQuery(sql);
+
+                return null;
+            }catch( SQLException ex ){
+                ex.printStackTrace();
+            }
+        }else{
             return null;
-        }catch( SQLException ex ){
-            ex.printStackTrace();
         }
         
         return null;
