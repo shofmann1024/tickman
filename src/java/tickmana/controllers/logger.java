@@ -34,9 +34,9 @@ public class logger {
         return logger.instance;
     }
     
-    public boolean addlog_ok( String log ){
-        if( log.compareTo("") != 0 ){
-            this.logs.add(new log(log.Types_.ok, log));
+    public boolean addlog_ok( String logmsg ){
+        if( logmsg.compareTo("") != 0 ){
+            this.logs.add(new log(log.Types_.ok, logmsg));
             
             return true;
         }else{
@@ -44,9 +44,9 @@ public class logger {
         }
     }
     
-    public boolean addlog_warning( String log ){
-        if( log.compareTo("") != 0 ){
-            this.logs.add(new log(log.Types_.warning, log));
+    public boolean addlog_warning( String logmsg ){
+        if( logmsg.compareTo("") != 0 ){
+            this.logs.add(new log(log.Types_.warning, logmsg));
             
             return true;
         }else{
