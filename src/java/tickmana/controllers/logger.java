@@ -8,6 +8,7 @@ package tickmana.controllers;
 
 import java.util.ArrayList;
 import tickmana.controllers.objects.log;
+import tickmana.controllers.dblinker;
 
 /**
  *
@@ -16,11 +17,13 @@ import tickmana.controllers.objects.log;
 public class logger {
     public static logger instance = null;
     private ArrayList<log> logs = null;
+    private dblinker link = null;
     
     //@Override
     protected logger(){
         try{
             this.logs = new ArrayList<>();
+            this.link = dblinker.getinstance();
         }finally{
             this.logs = null;
         }
@@ -34,19 +37,9 @@ public class logger {
         return logger.instance;
     }
     
-    public boolean addlog_ok( String logmsg ){
+    public boolean addlog( log.Types_ logtyp, String logmsg ){
         if( logmsg.compareTo("") != 0 ){
-            this.logs.add(new log(log.Types_.ok, logmsg));
-            
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
-    public boolean addlog_warning( String logmsg ){
-        if( logmsg.compareTo("") != 0 ){
-            this.logs.add(new log(log.Types_.warning, logmsg));
+            this.logs.add(new log(logtyp, logmsg));
             
             return true;
         }else{
@@ -63,6 +56,8 @@ public class logger {
     public void finalize() throws Throwable {
         super.finalize();
         
+        String query = "";
         
+        this.link.executequery(query);
     }
 }
