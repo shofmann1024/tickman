@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package tickmana.controllers.objects;
+package tickman.controllers.objects;
 
 import java.sql.Timestamp;
 

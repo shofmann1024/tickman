@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-package tickmana.controllers;
+package tickman.controllers;
 
 import java.util.ArrayList;
-import tickmana.controllers.objects.log;
-import tickmana.controllers.dblinker;
+import tickman.controllers.objects.log;
+import tickman.controllers.dblinker;
 
 /**
  *

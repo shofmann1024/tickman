@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package tickmana.moduls;
+package tickman.moduls;
 
 /**
  *
  * @author shofmann
  */
-public class authentificator {
+public class user {
     
 }
